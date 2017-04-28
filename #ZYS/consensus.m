@@ -46,7 +46,7 @@ function [U,Formation,controller,dot_Z]=consensus(t,X,Z,para)
 %         K11 = -2;  K12 = -2;  K21 = 0.1174; K22 = 0.2122;%r+jm=-1+j (theorital)
 %         K11 = -2;  K12 = -2;  K21 = 0.1;    K22 = 0.1;%r+jm=-1+j
 %         K11 = 0;   K12 = 0;   K21  =0.6254; K22 = 1.0832; %(theorital)
-        K11 = 0;   K12 = 0;   K21  = 0.2; K22 = 0.7;
+        K11 = 0;   K12 = 0;   K21  = 0.2; K22 = 0.9;
 %           K11 = 0;   K12 = 0;   K21  = 0.5; K22 = 0.9;
     end
     Formation = H;
@@ -64,7 +64,7 @@ function [U,Formation,controller,dot_Z]=consensus(t,X,Z,para)
     U = K1*(X(1:6,:) - H) + K2*(X(1:6,:)-H)*L.' - dot_H_v;
     
     if flag ==2
-    U = K2*(X(1:6,:)-H)*L.';
+    U = K2*X(1:6,:)*L.';
     end
 %%  
     U1     = diag([1 -1 -1])*U + g*[zeros(2,n);ones(1,n)];%%%%%%zuo biao xi zhuan huan shi fen zhong yao

@@ -11,7 +11,7 @@ function [ret] = control_post(t, X, U, Z, Formation,para)
     ret.L    = para.L;
     ret.str  = para.str;
     ret.t    = t; 
-    [V,~]    = eig(ret.L);
+    [V,~]    = eig(ret.L.');
    
     x = zeros(length(ret.t),ret.n);
     y = zeros(length(ret.t),ret.n);
@@ -61,6 +61,7 @@ for i = 1:ret.n
         Formation_vy(:,i) = Formation(:,(i-1)*ret.lf + 5);
         Formation_vz(:,i) = Formation(:,(i-1)*ret.lf + 6);
 end
+    V(:,1);
     aver_dot_x = dot_x*V(:,1)/(ones(1,ret.n)*V(:,1));
     aver_dot_y = dot_y*V(:,1)/(ones(1,ret.n)*V(:,1));
     aver_dot_z = dot_z*V(:,1)/(ones(1,ret.n)*V(:,1));

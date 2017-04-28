@@ -27,7 +27,7 @@ if ret{index}.flag ==0
      fig.PaperPositionMode = 'auto';
      fig_pos = fig.PaperPosition;
      fig.PaperSize = [fig_pos(3) fig_pos(4)];
-     print (strcat('Posi_xy_',ret{index}.str,'#',methods{index}),'-dpdf')
+     print (strcat('Posi_xy_',ret{index}.str,'@',methods{index}),'-dpdf')
 end  
 %%
 if ret{index}.flag == 1
@@ -76,14 +76,14 @@ if ret{index}.flag == 1
      fig.PaperPositionMode = 'auto';
      fig_pos = fig.PaperPosition;
      fig.PaperSize = [fig_pos(3) fig_pos(4)];
-     print (strcat('Posi_xy_',ret{index}.str,'#',methods{index}),'-dpdf')
+     print (strcat('Posi_xy_',ret{index}.str,'@',methods{index}),'-dpdf')
 end
 %%
 if ret{index}.flag == 2
      figure('units','normalized','position', [.1 .1 .4 .6]);
      hold on;
      box on;
-     axis([-6 2 -2 3]);
+     axis([-2 5 -6 3]);
      for i = 1:ret{index}.n
          plot(ret{index}.x(:,i),ret{index}.y(:,i),'LineWidth', 0.7); 
      end
@@ -103,7 +103,7 @@ if ret{index}.flag == 2
      fig.PaperPositionMode = 'auto';
      fig_pos = fig.PaperPosition;
      fig.PaperSize = [fig_pos(3) fig_pos(4)];
-     print (strcat('Posi_xy_',ret{index}.str,'#',methods{index}),'-dpdf')
+     print (strcat('Posi_xy_',ret{index}.str,'@',methods{index}),'-dpdf')
 end
 %% position x
 %%
@@ -130,7 +130,7 @@ if ret{index}.flag < 2
  fig.PaperPositionMode = 'auto';
  fig_pos = fig.PaperPosition;
  fig.PaperSize = [fig_pos(3) fig_pos(4)];
- print (strcat('Posi_x_',ret{index}.str,'#',methods{index}),'-dpdf')
+ print (strcat('Posi_x_',ret{index}.str,'@',methods{index}),'-dpdf')
 end
 %% position y
 %%
@@ -157,7 +157,7 @@ if ret{index}.flag < 2
  fig.PaperPositionMode = 'auto';
  fig_pos = fig.PaperPosition;
  fig.PaperSize = [fig_pos(3) fig_pos(4)];
- print (strcat('Posi_y_',ret{index}.str,'#',methods{index}),'-dpdf')
+ print (strcat('Posi_y_',ret{index}.str,'@',methods{index}),'-dpdf')
 end
   
 %% position z
@@ -185,7 +185,7 @@ if ret{index}.flag < 2
  fig.PaperPositionMode = 'auto';
  fig_pos = fig.PaperPosition;
  fig.PaperSize = [fig_pos(3) fig_pos(4)];
- print (strcat('Posi_z_',ret{index}.str,'#',methods{index}),'-dpdf')
+ print (strcat('Posi_z_',ret{index}.str,'@',methods{index}),'-dpdf')
 end
 %% velocity x
 %% 
@@ -200,7 +200,7 @@ end
     axis([0 15 -0.2 0.3]);
  end
  if ret{index}.flag == 2
-    axis([0 20 -3 2]);
+    axis([0 30 -3 2]);
  end
  xlabel('$t [s]$', 'Interpreter', 'LaTex', 'FontSize', 12);
  ylabel('$v_x [m/s]$', 'Interpreter', 'LaTex', 'FontSize', 12);
@@ -221,7 +221,7 @@ end
  fig.PaperPositionMode = 'auto';
  fig_pos = fig.PaperPosition;
  fig.PaperSize = [fig_pos(3) fig_pos(4)];
- print (strcat('Velo_x_',ret{index}.str,'#',methods{index}),'-dpdf')
+ print (strcat('Velo_x_',ret{index}.str,'@',methods{index}),'-dpdf')
  
 %% velocity y
 %%  
@@ -236,7 +236,7 @@ end
     axis([0 15 -0.2 0.3]);
  end
  if ret{index}.flag == 2
-    axis([0 20 -3 3]);
+    axis([0 30 -3 3]);
  end
  xlabel('$t [s]$', 'Interpreter', 'LaTex', 'FontSize', 12);
  ylabel('$v_y [m/s]$', 'Interpreter', 'LaTex', 'FontSize', 12);
@@ -256,7 +256,7 @@ end
  fig.PaperPositionMode = 'auto';
  fig_pos = fig.PaperPosition;
  fig.PaperSize = [fig_pos(3) fig_pos(4)];
- print (strcat('Velo_y_',ret{index}.str,'#',methods{index}),'-dpdf')
+ print (strcat('Velo_y_',ret{index}.str,'@',methods{index}),'-dpdf')
  
  %% velocity z
 %%  
@@ -271,7 +271,7 @@ end
     axis([0 15 -0.2 1]);
  end
  if ret{index}.flag == 2
-    axis([0 20 -1.5 3]);
+    axis([0 30 -1.5 3]);
  end
  xlabel('$t [s]$', 'Interpreter', 'LaTex', 'FontSize', 12);
  ylabel('$v_z [m/s]$', 'Interpreter', 'LaTex', 'FontSize', 12);
@@ -291,7 +291,7 @@ end
  fig.PaperPositionMode = 'auto';
  fig_pos = fig.PaperPosition;
  fig.PaperSize = [fig_pos(3) fig_pos(4)];
- print (strcat('Velo_z_',ret{index}.str,'#',methods{index}),'-dpdf')
+ print (strcat('Velo_z_',ret{index}.str,'@',methods{index}),'-dpdf')
 
 
  

@@ -21,7 +21,7 @@ function[y_0,para]=initial(flag)
           para.L = [1  0 -1;
                    -1  1  0;
                     0 -1  1];
-          para.str = 'circle'
+          para.str = 'circle';
           
    elseif para.flag == 1
           y1  = [.3  .3  .8  0  0  1 0 0 0   1  8 0 0 0   1    1*9.8];
@@ -35,7 +35,7 @@ function[y_0,para]=initial(flag)
           para.L = [1  0 -1;
                    -1  1  0;
                     0 -1  1];
-          para.str = 'parabolic'
+          para.str = 'parabolic';
           
    elseif para.flag == 2
           y1  = [0.5   0.5  0.5   1.0   1   1 0 0 0    2  8 0 0 0   2    2*9.8];
@@ -56,14 +56,21 @@ function[y_0,para]=initial(flag)
 
           para.n = 7;  %number of multi-agents
           y_0    = [y1 y2 y3 y4 y5 y6 y7];
-          para.L = [2 -1 -1  0  0  0  0;
-                    0  2 -1 -1  0  0  0;
-                    0  0  2 -1 -1  0  0;
-                    0  0  0  2 -1 -1  0;
-                    0  0  0  0  2 -1 -1;
-                   -1  0  0  0  0  2 -1;
-                   -1 -1  0  0  0  0  2];
-          para.str = 'consensus'
+%           para.L = [2 -1 -1  0  0  0  0;
+%                     0  2 -1 -1  0  0  0;
+%                     0  0  2 -1 -1  0  0;
+%                     0  0  0  2 -1 -1  0;
+%                     0  0  0  0  2 -1 -1;
+%                    -1  0  0  0  0  2 -1;
+%                    -1 -1  0  0  0  0  2];
+         para.L = [1 0 0 -1 0 0 0;
+               -1 2 -1 0 0 0 0;
+               -1 0 1 0 0 0 0;
+               0 0 0 1 0 -1 0;
+               0 -1 -1 0 2 0 0;
+               0 0 0 0 -1 2 -1;
+               0 0 0 0 -1 0 1];
+          para.str = 'consensus';
                   
    end
 
