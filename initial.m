@@ -1,5 +1,6 @@
+% !Mode:: "MATLAB:UTF-8"
 function[y_0,para]=initial(flag)
-   %% 
+   %%
    para.DOF  = 3;%domain of freedom
    para.lx   = 10;%lx : the length of the statevector of a single agent
    para.lz   = 6;
@@ -15,14 +16,14 @@ function[y_0,para]=initial(flag)
           y3  = [-1   -1.5  1    0  1   0 0 0 0 1.5  8 0 0 0 1.5  1.5*9.8];
 %           y1  = [1.5   0    1.1  1  0   1 0 0 0 0.9  8 0 0 0  0    0];
 %           y2  = [-1.5  1    1    0  .5  0 0 0 0   1  8 0 0 0  0    0];
-%           y3  = [-1   -1.5  1    0  1   0 0 0 0 1.5  8 0 0 0  0    0];         
+%           y3  = [-1   -1.5  1    0  1   0 0 0 0 1.5  8 0 0 0  0    0];
           para.n = 3;  %number of multi-agents
           y_0    = [y1 y2 y3];
           para.L = [1  0 -1;
                    -1  1  0;
                     0 -1  1];
           para.str = 'circle';
-          
+
    elseif para.flag == 1
           y1  = [.3  .3  .8  0  0  1 0 0 0   1  8 0 0 0   1    1*9.8];
           y2  = [.4  .3   1  0  0  0 0 0 0   1  8 0 0 0   1    1*9.8];
@@ -36,7 +37,7 @@ function[y_0,para]=initial(flag)
                    -1  1  0;
                     0 -1  1];
           para.str = 'parabolic';
-          
+
    elseif para.flag == 2
           y1  = [0.5   0.5  0.5   1.0   1   1 0 0 0    2  8 0 0 0   2    2*9.8];
           y2  = [0.0  -1.3  1.0  -1.0   1   2 0 0 0    1  8 0 0 0   1    1*9.8];
@@ -71,7 +72,7 @@ function[y_0,para]=initial(flag)
                0 0 0 0 -1 2 -1;
                0 0 0 0 -1 0 1];
           para.str = 'consensus';
-                  
+
    end
 
 end

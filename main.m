@@ -1,3 +1,4 @@
+% !Mode:: "MATLAB:UTF-8"
 clc; clear all; close all;
 
 methods = {'ZYS', 'WHL'};
@@ -16,7 +17,7 @@ if flag(j) < 2
  figure('units','normalized','position', [.1 .1 .4 .6]);
  hold on;
  box on;
- 
+
 if ret{index}.flag == 0
     axis([0 10 0 4]);
  end

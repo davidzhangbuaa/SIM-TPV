@@ -1,3 +1,4 @@
+% !Mode:: "MATLAB:UTF-8"
 function [U,Formation,controller,dot_Z]=consensus(t,X,Z,para)
 
     n    = para.n;
@@ -13,7 +14,7 @@ function [U,Formation,controller,dot_Z]=consensus(t,X,Z,para)
                    1            1                    1               ;
                   -w*sin(w*t)  -w*sin(w*t + 2*pi/3) -w*sin(w*t + 4*pi/3);
                    w*cos(w*t)   w*cos(w*t + 2*pi/3)  w*cos(w*t + 4*pi/3);
-                   0            0                    0                 ];  
+                   0            0                    0                 ];
           dot_H_v = w*w*[H(1:2,:);
                          0 0 0];
           ddot_H_v = w*w*w*[H(1:2,:);
@@ -50,22 +51,22 @@ function [U,Formation,controller,dot_Z]=consensus(t,X,Z,para)
 %            K11 = -2;  K12 = -2;  K21 = 0.1174; K22 = 0.2122;%r+jm=-1+j (theorital)
            K11 = -2;  K12 = -2;  K21 = 0.1;    K22 = 0.1;%r+jm=-1+j
     end
-    
+
     Formation = H;
-    %%   
+    %%
     alpha = 10;
-    g = para.g; 
+    g = para.g;
 
     Lambda = 10*diag(ones(1,3));
     Tao    = diag([0.001 0.1]);
     phi    = X(7,:);
     theta  = X(8,:);
     m      = X(10,:);
-    
+
     thrust = Z(1,:);
     inte_s = Z(2:4,:);
 %     a_esti = Z(5:6,:);
-   
+
 
 
     ddot_x    =  -thrust.*sin(theta)./m;
@@ -75,31 +76,31 @@ function [U,Formation,controller,dot_Z]=consensus(t,X,Z,para)
     dot_a_esti = zeros(2,n);
 
 %%
-%formation algorithm 
+%formation algorithm
     K1  = [K11*diag(ones(1,3)) K12*diag(ones(1,3))];
     K2  = [K21*diag(ones(1,3)) K22*diag(ones(1,3))];
     s         = - K1*(X(1:6,:) - H) + K2*(X(1:6,:)-H)*L.' + dot_H_v + ddot_X;
     ddot_X_r  =  K1*(X(1:6,:) - H) - K2*(X(1:6,:)-H)*L.'  - dot_H_v - Lambda * inte_s;
     dddot_X_r =  K1*([X(4:6,:);ddot_X] - [H(4:6,:);dot_H_v]) - K2*([X(4:6,:);ddot_X] - [H(4:6,:);dot_H_v])*L.' - ddot_H_v  - Lambda * s;
-%% 
-if flag ==2  
+%%
+if flag ==2
 %consensus algorithm
     b = 0.9;
     k = 0.5;%the velo of convengence
     s         = ddot_X + b*X(4:6,:)*L.' + k*X(1:3,:)*L.';
     ddot_X_r  = - b*X(4:6,:)*L.' - k*X(1:3,:)*L.' - Lambda * inte_s;
     dddot_X_r = - b*ddot_X*L.' - k*X(4:6,:)*L.' - Lambda * s;
-end 
- %%   
+end
+ %%
     xi        = ddot_X -  ddot_X_r;
     for i = 1:n
         d  = dddot_X_r(:,i)+alpha*ddot_X_r(:,i);
         d1 = [d -alpha*[0 0 1].'];
-        dot_a_esti(:,i) = -Tao*d1.'*xi(:,i); 
+        dot_a_esti(:,i) = -Tao*d1.'*xi(:,i);
     end
 
     U = -(dddot_X_r+alpha*ddot_X_r).*[Z(5,:);Z(5,:);Z(5,:)] + alpha*[0 0 1].'*Z(6,:);
-  
+
     dot_thrust = U(3,:) - alpha*thrust;
     omega_x    = -U(2,:)./thrust;
     omega_y    = U(1,:)./thrust;

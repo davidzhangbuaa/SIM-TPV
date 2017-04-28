@@ -1,5 +1,6 @@
+% !Mode:: "MATLAB:UTF-8"
 function [ret] = control_post(t, X, U, Z, Formation,para)
-   
+
     ret.n    = para.n;
     ret.DOF  = para.DOF;
     ret.lx   = para.lx;
@@ -10,9 +11,9 @@ function [ret] = control_post(t, X, U, Z, Formation,para)
     ret.flag = para.flag;
     ret.L    = para.L;
     ret.str  = para.str;
-    ret.t    = t; 
+    ret.t    = t;
     [V,~]    = eig(ret.L.');
-   
+
     x = zeros(length(ret.t),ret.n);
     y = zeros(length(ret.t),ret.n);
     z = zeros(length(ret.t),ret.n);
@@ -35,12 +36,12 @@ function [ret] = control_post(t, X, U, Z, Formation,para)
     Formation_vx   = zeros(length(ret.t),ret.n);
     Formation_vy   = zeros(length(ret.t),ret.n);
     Formation_vz   = zeros(length(ret.t),ret.n);
-    
+
 for i = 1:ret.n
-    
-          x(:,i)  = X(:,(i-1)*ret.lx+1); 
-          y(:,i)  = X(:,(i-1)*ret.lx+2); 
-          z(:,i)  = X(:,(i-1)*ret.lx+3); 
+
+          x(:,i)  = X(:,(i-1)*ret.lx+1);
+          y(:,i)  = X(:,(i-1)*ret.lx+2);
+          z(:,i)  = X(:,(i-1)*ret.lx+3);
       dot_x(:,i)  = X(:,(i-1)*ret.lx+4);
       dot_y(:,i)  = X(:,(i-1)*ret.lx+5);
       dot_z(:,i)  = X(:,(i-1)*ret.lx+6);
@@ -79,11 +80,11 @@ end
     Epf(i,:) = norm(errf(i,:),'fro');
     end
     Ep = Epz + Epf;
-    
+
     ret.x   = x;
     ret.y   = y;
     ret.z   = z;
-    
+
     ret.Formation_x = Formation_x;
     ret.Formation_y = Formation_y;
     ret.Formation_z = Formation_z;
@@ -91,7 +92,7 @@ end
     ret.Formation_vy = Formation_vy;
     ret.Formation_vz = Formation_vz;
     ret.Formation = Formation;
-        
+
     ret.dot_x = dot_x;
     ret.dot_y = dot_y;
     ret.dot_z = dot_z;
@@ -100,7 +101,7 @@ end
     ret.u_x   = u_x;
     ret.u_y   = u_y;
     ret.u_z   = u_z;
-    
+
     ret.phi   = phi;
     ret.theta = theta;
     ret.psi   = psi;
