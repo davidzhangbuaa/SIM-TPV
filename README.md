@@ -1,7 +1,8 @@
 # SIM-TPV
-##This is the simulaton of the method of ZYS's and WHL's on consensus of TPV model
+## This is the simulaton of the method of ZYS's and WHL's on consensus of TPV model
 
 reference:
+
 [1].Dong X, Yu B, Shi Z, et al. Time-Varying Formation Control for Unmanned
 Aerial Vehicles: Theories and Applications[J].
 Control Systems Technology IEEE Transactions on, 2015, 23(1):340-348.
